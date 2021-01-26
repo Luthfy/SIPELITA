@@ -6,4 +6,10 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="perda">(Berdasarkan PERDA Prov. Kal-Sel No. 4 Tahun 2018 Tentang \nRetribusi Pemakaian Kekayaan Daerah)</string>
+    <string name="title_activity_e_card">ECardActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

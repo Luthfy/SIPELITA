@@ -132,13 +132,13 @@ public class ChangeProfileActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<UpdateProfileResponse> call, Response<UpdateProfileResponse> response) {
                 mLoading.dismiss();
-                startActivity(new Intent(ChangeProfileActivity.this, ProfileFragment.class));
+                onBackPressed();
+//                startActivity(new Intent(ChangeProfileActivity.this, ProfileFragment.class));
                 finish();
             }
 
             @Override
             public void onFailure(Call<UpdateProfileResponse> call, Throwable t) {
-
             }
         });
     }

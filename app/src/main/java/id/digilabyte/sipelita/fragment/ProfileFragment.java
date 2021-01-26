@@ -25,6 +25,7 @@ import id.digilabyte.sipelita.model.User;
 import id.digilabyte.sipelita.model.response.UserResponse;
 import id.digilabyte.sipelita.network.BapelkesPelitaApi;
 import id.digilabyte.sipelita.ui.ChangeProfileActivity;
+import id.digilabyte.sipelita.ui.ECardActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,6 +40,7 @@ public class ProfileFragment extends Fragment {
     LinearLayout llCompanyUser;
     ImageView imgUserProfile;
 
+    String imagePath = "";
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -51,6 +53,7 @@ public class ProfileFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Button btnChangeProfile = (Button) view.findViewById(R.id.btn_change_profile);
+        Button btnEcard = (Button) view.findViewById(R.id.btn_ecard);
 
         llCompanyUser       = (LinearLayout) view.findViewById(R.id.ll_company_profile);
         txtNamaProfile      = (TextView) view.findViewById(R.id.txt_nama_profile);
@@ -69,6 +72,16 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(view.getContext(), ChangeProfileActivity.class));
+            }
+        });
+
+        btnEcard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ECardActivity.class);
+                intent.putExtra("NAME", txtNamaProfile.getText());
+                intent.putExtra("IMAGE", imagePath);
+                startActivity(intent);
             }
         });
 
@@ -104,6 +117,7 @@ public class ProfileFragment extends Fragment {
                         .error(R.drawable.doctor_l)
                         .into(imgUserProfile);
 
+                imagePath = userData.getProfileImageUser();
             }
 
             @Override

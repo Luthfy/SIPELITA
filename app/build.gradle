@@ -5,16 +5,19 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "id.digilabyte.myapplication"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion 23
+        targetSdkVersion 30
         versionCode 1
-        versionName "1.0"
+        versionName "1.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
         }
     }
     compileOptions {
@@ -46,4 +49,6 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.github.dhaval2404:imagepicker:1.6'
     implementation 'com.droidninja:filepicker:2.2.1'
+    implementation 'me.dm7.barcodescanner:zxing:1.9.8'
+    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 }

@@ -258,6 +258,15 @@
                 android:text="Change Profile"
                 android:textColor="@color/colorWhiteForBackground" />
 
+            <Button
+                android:id="@+id/btn_ecard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/btn_bg_primary"
+                android:text="E-Card"
+                android:textColor="@color/colorWhiteForBackground" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
