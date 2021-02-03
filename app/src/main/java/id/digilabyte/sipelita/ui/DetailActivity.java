@@ -41,7 +41,7 @@ public class DetailActivity extends AppCompatActivity {
     private LinearLayout llSebaranDetail, llButtonTest;
     private RecyclerView rcDetailSebaran;
     private TextView txtTitle, txtDesc, txtInCharge, txtPrice, txtQty;
-    private TextView txtStartDate, txtPretest, txtPostTest;
+    private TextView txtStartDate, txtPretest, txtPostTest, txtUrutan;
     private ImageView  btnEvaluation, btnPreTest, btnPostTest, btnScanQR;
     private Button txtButton;
     private ProgressDialog mLoading;
@@ -85,6 +85,12 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        requestDetail(UUID);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         requestDetail(UUID);
     }
 
@@ -145,6 +151,34 @@ public class DetailActivity extends AppCompatActivity {
             txtButton.setText("Registrasi Pelatihan");
         }
 
+        if (pelatihan.getNilai_pretest() == null) {
+            txtPretest.setVisibility(View.GONE);
+            txtPostTest.setVisibility(View.GONE);
+            btnPreTest.setVisibility(View.VISIBLE);
+            btnPostTest.setVisibility(View.GONE);
+            btnEvaluation.setVisibility(View.GONE);
+        } else if (pelatihan.getNilai_pretest() != null && pelatihan.getNilai_posttest() == null) {
+            txtPretest.setVisibility(View.VISIBLE);
+            txtPostTest.setVisibility(View.GONE);
+            btnPreTest.setVisibility(View.GONE);
+            btnPostTest.setVisibility(View.VISIBLE);
+            btnEvaluation.setVisibility(View.GONE);
+        } else if (pelatihan.getNilai_posttest() != null && !(pelatihan.isEvaluation())) {
+            txtPretest.setVisibility(View.VISIBLE);
+            txtPostTest.setVisibility(View.VISIBLE);
+            btnPreTest.setVisibility(View.GONE);
+            btnPostTest.setVisibility(View.GONE);
+            btnEvaluation.setVisibility(View.VISIBLE);
+        } else {
+            txtPretest.setVisibility(View.VISIBLE);
+            txtPostTest.setVisibility(View.VISIBLE);
+            btnPreTest.setVisibility(View.GONE);
+            btnPostTest.setVisibility(View.GONE);
+            btnEvaluation.setVisibility(View.GONE);
+        }
+
+
+
         txtButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,6 +226,16 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        txtUrutan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, GradeEventActivity.class);
+                intent.putExtra("UUID", UUID);
+                intent.putExtra("TITLE", txtTitle.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     @SuppressLint("WrongConstant")
@@ -207,6 +251,7 @@ public class DetailActivity extends AppCompatActivity {
         txtPretest      = (TextView) findViewById(R.id.txt_pretest);
         txtPostTest     = (TextView) findViewById(R.id.txt_post_test);
         txtStartDate    = (TextView) findViewById(R.id.txt_tanggal_mulai_detail);
+        txtUrutan       = (TextView) findViewById(R.id.txt_lihat_urutan_detail);
         txtButton       = (Button) findViewById(R.id.btn_register_detail);
         btnEvaluation   = (ImageView) findViewById(R.id.btn_evaluasi_detail);
         btnPreTest      = (ImageView) findViewById(R.id.btn_pretest_detail);

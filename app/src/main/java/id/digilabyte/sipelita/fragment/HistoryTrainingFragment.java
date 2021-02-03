@@ -48,7 +48,7 @@ public class HistoryTrainingFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_history_training, container, false);
 
-        rcHistoryTrainingList = (RecyclerView) view.findViewById(R.id.rc_history_training);
+        rcHistoryTrainingList = (RecyclerView) view.findViewById(R.id.rc_post_test);
         rcHistoryTrainingList.setHasFixedSize(true);
 
         trainingHistoryRequest();

@@ -32,6 +32,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:targetApi="q">
+        <activity android:name=".ui.GradeEventActivity" />
         <activity android:name=".ui.ScanQRCodeActivity" />
         <activity android:name=".ui.TestActivity" />
         <activity android:name=".ui.ECardActivity" />

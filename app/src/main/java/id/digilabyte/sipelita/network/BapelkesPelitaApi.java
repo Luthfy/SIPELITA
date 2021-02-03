@@ -21,6 +21,7 @@ import id.digilabyte.sipelita.model.response.DetailPelatihan;
 import id.digilabyte.sipelita.model.response.DistrictsResponse;
 import id.digilabyte.sipelita.model.response.EducationResponse;
 import id.digilabyte.sipelita.model.response.FormResponse;
+import id.digilabyte.sipelita.model.response.GradeResultResponse;
 import id.digilabyte.sipelita.model.response.GroupResponse;
 import id.digilabyte.sipelita.model.response.HistoryRoomResponse;
 import id.digilabyte.sipelita.model.response.HistoryTrainingResponse;
@@ -227,5 +228,15 @@ public interface BapelkesPelitaApi {
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @POST("api/v2/absensi")
     Call<AbsensiResponse> absensiResponseCall(@Header("Authorization") String authorizen, @Body AbsensiRequest absensiRequest);
+
+    // event post test grade
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @GET("api/v1/event/{id}/posttests")
+    Call<GradeResultResponse> postTestResponzeCall(@Header("Authorization") String authorizen, @Path("id") String id);
+
+    // event post test grade
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @GET("api/v1/event/{id}/pretests")
+    Call<GradeResultResponse> preTestResponzeCall(@Header("Authorization") String authorizen, @Path("id") String id);
 
 }

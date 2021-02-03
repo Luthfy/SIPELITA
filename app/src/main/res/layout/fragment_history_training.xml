@@ -7,7 +7,7 @@
     tools:context=".fragment.HistoryTrainingFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_history_training"
+        android:id="@+id/rc_post_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/list_history" />
