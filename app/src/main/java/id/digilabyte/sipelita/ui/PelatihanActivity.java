@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import id.digilabyte.sipelita.R;
 import id.digilabyte.sipelita.adapter.PelatihanAdapter;
 import id.digilabyte.sipelita.helper.ClientHelper;
+import id.digilabyte.sipelita.helper.UserPreferences;
 import id.digilabyte.sipelita.model.Pelatihan;
 import id.digilabyte.sipelita.model.response.PelatihanResponse;
 import id.digilabyte.sipelita.network.BapelkesPelitaApi;
@@ -54,7 +55,7 @@ public class PelatihanActivity extends AppCompatActivity {
 
     private void listDataRequest() {
         BapelkesPelitaApi api = ClientHelper.getClient().create(BapelkesPelitaApi.class);
-        Call<PelatihanResponse> pelatihanResponseCall = api.pelatihanResponse();
+        Call<PelatihanResponse> pelatihanResponseCall = api.pelatihanResponse(UserPreferences.getKeyUserType(this)+" "+UserPreferences.getKeyUserToken(this));
 
         pelatihanResponseCall.enqueue(new Callback<PelatihanResponse>() {
             @Override

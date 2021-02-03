@@ -38,10 +38,11 @@ import retrofit2.Response;
 public class DetailActivity extends AppCompatActivity {
 
     private ImageView imgDetail;
-    private LinearLayout llSebaranDetail;
+    private LinearLayout llSebaranDetail, llButtonTest;
     private RecyclerView rcDetailSebaran;
     private TextView txtTitle, txtDesc, txtInCharge, txtPrice, txtQty;
-    private TextView txtStartDate;
+    private TextView txtStartDate, txtPretest, txtPostTest;
+    private ImageView  btnEvaluation, btnPreTest, btnPostTest, btnScanQR;
     private Button txtButton;
     private ProgressDialog mLoading;
 
@@ -81,8 +82,13 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
-    private void requestDetail(String id) {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestDetail(UUID);
+    }
 
+    private void requestDetail(String id) {
         BapelkesPelitaApi api = ClientHelper.getClient().create(BapelkesPelitaApi.class);
         Call<DetailPelatihan> detailPelatihanResponseCall = api.detailPelatihanResponseCall(UserPreferences.getKeyUserType(this)+" "+Auth, id);
 
@@ -106,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
         mLoading.show();
     }
 
+    @SuppressLint("SetTextI18n")
     private void setDataDetail(Pelatihan pelatihan) {
         assert pelatihan != null;
         txtTitle.setText(pelatihan.getTitle());
@@ -114,6 +121,8 @@ public class DetailActivity extends AppCompatActivity {
         txtPrice.setText("Rp. "+ pelatihan.getPrice());
         txtQty.setText("Kuota : "+ pelatihan.getQuota()+"/"+ pelatihan.getAccept_participant());
         txtStartDate.setText("Tanggal Pelatihan : "+ pelatihan.getStart_time() +" - "+ pelatihan.getEnd_time());
+        txtPretest.setText("Pretest : " + (pelatihan.getNilai_pretest() == null ? "" : pelatihan.getNilai_pretest()));
+        txtPostTest.setText("Post Test : " + (pelatihan.getNilai_posttest() == null ? "" : pelatihan.getNilai_posttest()));
 
         Glide.with(this).load(pelatihan.getPoster()).into(imgDetail);
 
@@ -124,7 +133,18 @@ public class DetailActivity extends AppCompatActivity {
         SebaranAdapter adapter = new SebaranAdapter(DetailActivity.this, sebaranArrayList);
         rcDetailSebaran.setAdapter(adapter);
 
-        txtButton.setText("Registrasi Pelatihan");
+        if (pelatihan.isIs_registered()) {
+            txtPretest.setVisibility(View.VISIBLE);
+            txtPostTest.setVisibility(View.VISIBLE);
+            llButtonTest.setVisibility(View.VISIBLE);
+            txtButton.setVisibility(View.GONE);
+        } else {
+            txtPretest.setVisibility(View.GONE);
+            txtPostTest.setVisibility(View.GONE);
+            llButtonTest.setVisibility(View.GONE);
+            txtButton.setText("Registrasi Pelatihan");
+        }
+
         txtButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,22 +153,65 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnEvaluation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, TestActivity.class);
+                intent.putExtra("TYPE_TEST", "evaluation");
+                intent.putExtra("UUID", UUID);
+                startActivity(intent);
+            }
+        });
+
+        btnPreTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, TestActivity.class);
+                intent.putExtra("TYPE_TEST", "pretest");
+                intent.putExtra("UUID", UUID);
+                startActivity(intent);
+            }
+        });
+
+        btnPostTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, TestActivity.class);
+                intent.putExtra("TYPE_TEST", "posttest");
+                intent.putExtra("UUID", UUID);
+                startActivity(intent);
+            }
+        });
+
+        btnScanQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailActivity.this, ScanQRCodeActivity.class);
+                intent.putExtra("UUID", UUID);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void setRecyclerData() {
-
-    }
-
+    @SuppressLint("WrongConstant")
     private void initComp() {
         llSebaranDetail = (LinearLayout) findViewById(R.id.ll_sebaran_detail);
+        llButtonTest    = (LinearLayout) findViewById(R.id.button_test_detail);
         imgDetail       = (ImageView) findViewById(R.id.img_detail);
         txtTitle        = (TextView) findViewById(R.id.txt_title_detail);
         txtDesc         = (TextView) findViewById(R.id.txt_deskripsi_detail);
         txtInCharge     = (TextView) findViewById(R.id.txt_penanggungjawab_detail);
         txtPrice        = (TextView) findViewById(R.id.txt_harga_detail);
         txtQty          = (TextView) findViewById(R.id.txt_qty_detail);
+        txtPretest      = (TextView) findViewById(R.id.txt_pretest);
+        txtPostTest     = (TextView) findViewById(R.id.txt_post_test);
         txtStartDate    = (TextView) findViewById(R.id.txt_tanggal_mulai_detail);
         txtButton       = (Button) findViewById(R.id.btn_register_detail);
+        btnEvaluation   = (ImageView) findViewById(R.id.btn_evaluasi_detail);
+        btnPreTest      = (ImageView) findViewById(R.id.btn_pretest_detail);
+        btnPostTest     = (ImageView) findViewById(R.id.btn_post_test_detail);
+        btnScanQR       = (ImageView) findViewById(R.id.btn_scan_qr_detail);
 
         rcDetailSebaran = (RecyclerView) findViewById(R.id.rc_sebaran);
         rcDetailSebaran.setHasFixedSize(true);

@@ -28,6 +28,7 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Objects;
 
 import droidninja.filepicker.FilePickerBuilder;
@@ -322,6 +323,9 @@ public class FormPelatihanActivity extends AppCompatActivity {
                     Intent intent = new Intent(FormPelatihanActivity.this, CheckOutActivity.class);
                     intent.putExtra("FORM", fm);
                     startActivity(intent);
+                } else {
+                    FormResponse err = response.body();
+                    Toast.makeText(getApplicationContext(), "Tidak Dapat Mendaftar", Toast.LENGTH_SHORT).show();
                 }
             }
 

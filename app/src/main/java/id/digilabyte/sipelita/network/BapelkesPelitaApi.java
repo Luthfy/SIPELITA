@@ -3,13 +3,16 @@ package id.digilabyte.sipelita.network;
 import java.util.ArrayList;
 
 import id.digilabyte.sipelita.model.Contact;
+import id.digilabyte.sipelita.model.request.AbsensiRequest;
 import id.digilabyte.sipelita.model.request.BangunanRequest;
 import id.digilabyte.sipelita.model.request.ChangePasswordRequest;
 import id.digilabyte.sipelita.model.request.FormRequest;
 import id.digilabyte.sipelita.model.request.LoginRequest;
 import id.digilabyte.sipelita.model.request.RegisterRequest;
 import id.digilabyte.sipelita.model.request.RuangRequest;
+import id.digilabyte.sipelita.model.request.TestRequest;
 import id.digilabyte.sipelita.model.request.UpdateProfileRequest;
+import id.digilabyte.sipelita.model.response.AbsensiResponse;
 import id.digilabyte.sipelita.model.response.BangunanResponse;
 import id.digilabyte.sipelita.model.response.BannerResponse;
 import id.digilabyte.sipelita.model.response.ChangePasswordResponse;
@@ -30,6 +33,8 @@ import id.digilabyte.sipelita.model.response.ProvinciesResponse;
 import id.digilabyte.sipelita.model.response.RegisterResponse;
 import id.digilabyte.sipelita.model.response.RegistrasiPelatihanResponse;
 import id.digilabyte.sipelita.model.response.RuangResponse;
+import id.digilabyte.sipelita.model.response.TestResponse;
+import id.digilabyte.sipelita.model.response.TestResultResponse;
 import id.digilabyte.sipelita.model.response.TransaksiResponse;
 import id.digilabyte.sipelita.model.response.UpdateProfileResponse;
 import id.digilabyte.sipelita.model.response.UploadFileResponse;
@@ -79,7 +84,7 @@ public interface BapelkesPelitaApi {
     // pelatihan listing
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @GET("api/v1/event")
-    Call<PelatihanResponse> pelatihanResponse();
+    Call<PelatihanResponse> pelatihanResponse(@Header("Authorization") String authorizen);
 
     // registrasi pelatihan
     @Headers({"Accept:application/json","Content-Type:application/json"})
@@ -207,4 +212,20 @@ public interface BapelkesPelitaApi {
     @Headers({"Accept:application/json","Content-Type:application/json"})
     @GET("api/v2/building/")
     Call<BangunanResponse> hargaResponseCall();
+
+    // event evaluation
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @GET("api/v1/event/{id}/{type_test}")
+    Call<TestResponse> questionTestEventResponseCall(@Header("Authorization") String authorizen, @Path("id") String s, @Path("type_test") String type);
+
+    // event evaluation
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("api/v2/{type_test}")
+    Call<TestResultResponse> questionResultResponzeCall(@Header("Authorization") String authorizen, @Path("type_test") String type, @Body TestRequest testRequest);
+
+    // absesnsi event
+    @Headers({"Accept:application/json","Content-Type:application/json"})
+    @POST("api/v2/absensi")
+    Call<AbsensiResponse> absensiResponseCall(@Header("Authorization") String authorizen, @Body AbsensiRequest absensiRequest);
+
 }

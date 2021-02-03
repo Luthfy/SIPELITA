@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "id.digilabyte.myapplication"
         minSdkVersion 23
@@ -50,5 +50,4 @@ dependencies {
     implementation 'com.github.dhaval2404:imagepicker:1.6'
     implementation 'com.droidninja:filepicker:2.2.1'
     implementation 'me.dm7.barcodescanner:zxing:1.9.8'
-    compileOnly 'com.google.android.wearable:wearable:2.6.0'
 }

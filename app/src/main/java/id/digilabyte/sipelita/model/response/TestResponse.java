@@ -1,14 +1,13 @@
 package id.digilabyte.sipelita.model.response;
 
-import java.util.ArrayList;
+import id.digilabyte.sipelita.model.Test;
 
-import id.digilabyte.sipelita.model.FormPelatihan;
+public class TestResponse {
 
-public class FormResponse {
     private String status;
-    private FormPelatihan data;
+    private Test data;
 
-    public FormResponse(String status, FormPelatihan data, ArrayList<String> message) {
+    public TestResponse(String status, Test data) {
         this.status = status;
         this.data = data;
     }
@@ -21,13 +20,11 @@ public class FormResponse {
         this.status = status;
     }
 
-    public FormPelatihan getData() {
+    public Test getData() {
         return data;
     }
 
-    public void setData(FormPelatihan data) {
+    public void setData(Test data) {
         this.data = data;
     }
-
 }
-

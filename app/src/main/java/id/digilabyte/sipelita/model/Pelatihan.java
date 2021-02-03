@@ -17,8 +17,12 @@ public class Pelatihan  {
     private Integer accept_participant;
     private String poster;
     private ArrayList<Sebaran> participants;
+    private String nilai_pretest;
+    private String nilai_posttest;
+    private boolean evaluation;
+    private boolean is_registered;
 
-    public Pelatihan(String id, String start_time, String end_time, String title, String desc, String incharge, String price, Integer quota, String location, String created_at, Integer accept_participant, String poster, ArrayList<Sebaran> participants) {
+    public Pelatihan(String id, String start_time, String end_time, String title, String desc, String incharge, String price, Integer quota, String location, String created_at, Integer accept_participant, String poster, ArrayList<Sebaran> participants, String nilai_pretest, String nilai_posttest, boolean evaluation, boolean is_registered) {
         this.id = id;
         this.start_time = start_time;
         this.end_time = end_time;
@@ -32,6 +36,10 @@ public class Pelatihan  {
         this.accept_participant = accept_participant;
         this.poster = poster;
         this.participants = participants;
+        this.nilai_pretest = nilai_pretest;
+        this.nilai_posttest = nilai_posttest;
+        this.evaluation = evaluation;
+        this.is_registered = is_registered;
     }
 
     public String getId() {
@@ -136,5 +144,37 @@ public class Pelatihan  {
 
     public void setParticipants(ArrayList<Sebaran> participants) {
         this.participants = participants;
+    }
+
+    public String getNilai_pretest() {
+        return nilai_pretest;
+    }
+
+    public void setNilai_pretest(String nilai_pretest) {
+        this.nilai_pretest = nilai_pretest;
+    }
+
+    public String getNilai_posttest() {
+        return nilai_posttest;
+    }
+
+    public void setNilai_posttest(String nilai_posttest) {
+        this.nilai_posttest = nilai_posttest;
+    }
+
+    public boolean isEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(boolean evaluation) {
+        this.evaluation = evaluation;
+    }
+
+    public boolean isIs_registered() {
+        return is_registered;
+    }
+
+    public void setIs_registered(boolean is_registered) {
+        this.is_registered = is_registered;
     }
 }
