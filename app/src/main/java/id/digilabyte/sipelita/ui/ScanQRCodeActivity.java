@@ -1,5 +1,6 @@
 package id.digilabyte.sipelita.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,11 +24,17 @@ import id.digilabyte.sipelita.model.response.AbsensiResponse;
 import id.digilabyte.sipelita.model.response.DetailPelatihan;
 import id.digilabyte.sipelita.network.BapelkesPelitaApi;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+
+    private static final int CAMERA_CODE_REQUEST = 101;
+    private static final int FILE_CODE_REQUEST = 201;
+    private static final int RC_CAMERA_AND_STORAGE = 301;
 
     private String UUID;
     private ZXingScannerView mScannerView;
@@ -109,14 +117,24 @@ public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScanne
             finish();
         }
 
-//        Log.d("_HANDLE_RESULT_", rawResult.getBarcodeFormat().toString()); // Prints the scan format (qrcode, pdf417 etc.)
+    }
 
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mScannerView.resumeCameraPreview(ScanQRCodeActivity.this);
-//            }
-//        }, 2000);
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @AfterPermissionGranted(RC_CAMERA_AND_STORAGE)
+    private void methodRequiresTwoPermission() {
+        String[] perms = {Manifest.permission.CAMERA};
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            // ...
+        } else {
+            // Do not have permissions, request them now
+            EasyPermissions.requestPermissions(this, "Izin Menggunakan Kamera dan Mengakses Folder",
+                    RC_CAMERA_AND_STORAGE, perms);
+        }
     }
 }
