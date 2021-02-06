@@ -51,6 +51,8 @@ public class ScanQRCodeActivity extends AppCompatActivity implements ZXingScanne
             finish();
         }
 
+        methodRequiresTwoPermission();
+
         FrameLayout contentFrame = (FrameLayout) findViewById(R.id.container_frame);
         mScannerView = new ZXingScannerView(this);
         mScannerView.setAutoFocus(true);
