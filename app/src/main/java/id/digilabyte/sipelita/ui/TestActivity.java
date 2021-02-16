@@ -257,10 +257,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void setNumberOfQuestion(int number)
     {
         String text_number_question = number + "/" + JumlahSoal.toString();
         txtNumberOfQuestion.setText(text_number_question);
+
+        if ( JumlahSoal.toString().equals("1") ) {
+           btnNext.setText("Kirim");
+        }
     }
 
     @SuppressLint("SetTextI18n")
@@ -415,6 +420,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(TestActivity.this, DetailActivity.class);
                 intent.putExtra("PELATIHAN", UUID);
                 startActivity(intent);
+                finish();
             }
 
             @Override
@@ -422,6 +428,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(TestActivity.this, DetailActivity.class);
                 intent.putExtra("PELATIHAN", UUID);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -459,5 +466,14 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(TestActivity.this, DetailActivity.class);
+        intent.putExtra("PELATIHAN", UUID);
+        startActivity(intent);
+        finish();
+        super.onBackPressed();
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">demo-sipelita.agitatechnology.web.id</domain>
+        <domain includeSubdomains="true">sipelita.agitatechnology.web.id</domain>
     </domain-config>
 </network-security-config>

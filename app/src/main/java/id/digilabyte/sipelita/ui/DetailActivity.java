@@ -1,6 +1,7 @@
 package id.digilabyte.sipelita.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,9 +40,11 @@ public class DetailActivity extends AppCompatActivity {
 
     private ImageView imgDetail;
     private LinearLayout llSebaranDetail, llButtonTest;
+    private ConstraintLayout clPreteset, clPostTest, clEvaluasi;
     private RecyclerView rcDetailSebaran;
     private TextView txtTitle, txtDesc, txtInCharge, txtPrice, txtQty;
     private TextView txtStartDate, txtPretest, txtPostTest, txtUrutan;
+    private TextView txtBelowPretest, txtBelowPostTest, txtBelowEvaluasi;
     private ImageView  btnEvaluation, btnPreTest, btnPostTest, btnScanQR;
     private Button txtButton;
     private ProgressDialog mLoading;
@@ -122,7 +125,7 @@ public class DetailActivity extends AppCompatActivity {
     private void setDataDetail(Pelatihan pelatihan) {
         assert pelatihan != null;
         txtTitle.setText(pelatihan.getTitle());
-        txtDesc.setText("Deskripsi : \n"+ pelatihan.getDesc());
+        txtDesc.setText("Deskripsi : \n"+ (pelatihan.getDesc() == null ? "" : pelatihan.getDesc()));
         txtInCharge.setText("Penanggung Jawab : "+ pelatihan.getIncharge());
         txtPrice.setText("Rp. "+ pelatihan.getPrice());
         txtQty.setText("Kuota : "+ pelatihan.getQuota()+"/"+ pelatihan.getAccept_participant());
@@ -157,24 +160,48 @@ public class DetailActivity extends AppCompatActivity {
             btnPreTest.setVisibility(View.VISIBLE);
             btnPostTest.setVisibility(View.GONE);
             btnEvaluation.setVisibility(View.GONE);
+            txtBelowPretest.setVisibility(View.VISIBLE);
+            txtBelowPostTest.setVisibility(View.GONE);
+            txtBelowEvaluasi.setVisibility(View.GONE);
+            clPreteset.setVisibility(View.VISIBLE);
+            clPostTest.setVisibility(View.GONE);
+            clEvaluasi.setVisibility(View.GONE);
         } else if (pelatihan.getNilai_pretest() != null && pelatihan.getNilai_posttest() == null) {
             txtPretest.setVisibility(View.VISIBLE);
             txtPostTest.setVisibility(View.GONE);
             btnPreTest.setVisibility(View.GONE);
             btnPostTest.setVisibility(View.VISIBLE);
             btnEvaluation.setVisibility(View.GONE);
+            txtBelowPretest.setVisibility(View.GONE);
+            txtBelowPostTest.setVisibility(View.VISIBLE);
+            txtBelowEvaluasi.setVisibility(View.GONE);
+            clPreteset.setVisibility(View.GONE);
+            clPostTest.setVisibility(View.VISIBLE);
+            clEvaluasi.setVisibility(View.GONE);
         } else if (pelatihan.getNilai_posttest() != null && !(pelatihan.isEvaluation())) {
             txtPretest.setVisibility(View.VISIBLE);
             txtPostTest.setVisibility(View.VISIBLE);
             btnPreTest.setVisibility(View.GONE);
             btnPostTest.setVisibility(View.GONE);
             btnEvaluation.setVisibility(View.VISIBLE);
+            txtBelowPretest.setVisibility(View.GONE);
+            txtBelowPostTest.setVisibility(View.GONE);
+            txtBelowEvaluasi.setVisibility(View.VISIBLE);
+            clPreteset.setVisibility(View.GONE);
+            clPostTest.setVisibility(View.GONE);
+            clEvaluasi.setVisibility(View.VISIBLE);
         } else {
             txtPretest.setVisibility(View.VISIBLE);
             txtPostTest.setVisibility(View.VISIBLE);
             btnPreTest.setVisibility(View.GONE);
             btnPostTest.setVisibility(View.GONE);
             btnEvaluation.setVisibility(View.GONE);
+            txtBelowPretest.setVisibility(View.GONE);
+            txtBelowPostTest.setVisibility(View.GONE);
+            txtBelowEvaluasi.setVisibility(View.GONE);
+            clPreteset.setVisibility(View.GONE);
+            clPostTest.setVisibility(View.GONE);
+            clEvaluasi.setVisibility(View.GONE);
         }
 
 
@@ -257,6 +284,12 @@ public class DetailActivity extends AppCompatActivity {
         btnPreTest      = (ImageView) findViewById(R.id.btn_pretest_detail);
         btnPostTest     = (ImageView) findViewById(R.id.btn_post_test_detail);
         btnScanQR       = (ImageView) findViewById(R.id.btn_scan_qr_detail);
+        txtBelowPretest  = (TextView) findViewById(R.id.tv_pretest);
+        txtBelowPostTest = (TextView) findViewById(R.id.tv_post_test);
+        txtBelowEvaluasi = (TextView) findViewById(R.id.tv_evaluation);
+        clPreteset       = (ConstraintLayout) findViewById(R.id.pretest_constraint);
+        clPostTest       = (ConstraintLayout) findViewById(R.id.post_test_constraint);
+        clEvaluasi       = (ConstraintLayout) findViewById(R.id.evaluasi_constraint);
 
         rcDetailSebaran = (RecyclerView) findViewById(R.id.rc_sebaran);
         rcDetailSebaran.setHasFixedSize(true);
