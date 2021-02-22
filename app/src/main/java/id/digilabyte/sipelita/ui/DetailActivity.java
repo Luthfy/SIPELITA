@@ -308,4 +308,10 @@ public class DetailActivity extends AppCompatActivity {
         finish();
         return true;
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(DetailActivity.this, PelatihanActivity.class));
+        finish();
+    }
 }

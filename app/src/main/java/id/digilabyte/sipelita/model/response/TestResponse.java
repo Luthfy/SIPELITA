@@ -5,10 +5,12 @@ import id.digilabyte.sipelita.model.Test;
 public class TestResponse {
 
     private String status;
+    private String message;
     private Test data;
 
-    public TestResponse(String status, Test data) {
+    public TestResponse(String status, String message,Test data) {
         this.status = status;
+        this.message = message;
         this.data = data;
     }
 
@@ -26,5 +28,13 @@ public class TestResponse {
 
     public void setData(Test data) {
         this.data = data;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

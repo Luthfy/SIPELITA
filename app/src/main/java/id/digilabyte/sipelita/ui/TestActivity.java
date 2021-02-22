@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.ArrayMap;
@@ -246,6 +247,21 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                         setNumberOfQuestion(PosisiSoal + 1);
 
                         mLoading.dismiss();
+                    } else {
+
+                        String message = response.body() != null ? response.body().getMessage() : "Ada Sesuatu yang Salah, Silakan lapor ke Penyelenggara." ;
+
+                        new AlertDialog.Builder(TestActivity.this)
+                                .setMessage(message)
+                                .setCancelable(false)
+                                .setPositiveButton("Kembali", (dialog, id) -> {
+                                  Intent intent = new Intent(TestActivity.this, DetailActivity.class);
+                                  intent.putExtra("PELATIHAN", UUID);
+                                  startActivity(intent);
+                                  finish();
+                                })
+                                .show();
+
                     }
                 }
             }
@@ -324,11 +340,15 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
                 linearLayoutMultipleChoice.setVisibility(View.GONE);
                 linearLayoutInlineText.setVisibility(View.VISIBLE);
                 linearLayoutLevel.setVisibility(View.GONE);
+
+                edtInlineAnswer.setText("");
                 break;
             case "level" :
                 linearLayoutMultipleChoice.setVisibility(View.GONE);
                 linearLayoutInlineText.setVisibility(View.GONE);
                 linearLayoutLevel.setVisibility(View.VISIBLE);
+
+                radioLevel.clearCheck();
                 break;
         }
 
@@ -409,7 +429,7 @@ public class TestActivity extends AppCompatActivity implements View.OnClickListe
             Log.d("_SEND_ANSWER_", i + " " + test_lines.get(i).getId() + " " + test_lines.get(i).getAnswer());
         }
 
-        TestRequest data = new TestRequest(UUID, test_lines);
+        TestRequest data = new TestRequest(UUID, JumlahSoal.toString(),test_lines);
 
         BapelkesPelitaApi api = ClientHelper.getClient().create(BapelkesPelitaApi.class);
         Call<TestResultResponse> qTestResponseCall = api.questionResultResponzeCall(UserPreferences.getKeyUserType(this)+" "+UserPreferences.getKeyUserToken(this), TYPE, data);

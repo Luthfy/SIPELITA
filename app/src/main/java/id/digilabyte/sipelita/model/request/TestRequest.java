@@ -8,10 +8,12 @@ import id.digilabyte.sipelita.model.AnswerTest;
 public class TestRequest {
 
     private String event_id;
+    private String jumlah_soal;
     private List<AnswerTest> test_lines;
 
-    public TestRequest(String event_id, List<AnswerTest> test_lines) {
+    public TestRequest(String event_id, String jumlah_soal, List<AnswerTest> test_lines) {
         this.event_id = event_id;
+        this.jumlah_soal = jumlah_soal;
         this.test_lines = test_lines;
     }
 
@@ -29,5 +31,13 @@ public class TestRequest {
 
     public void setTest_lines(List<AnswerTest> test_lines) {
         this.test_lines = test_lines;
+    }
+
+    public String getJumlah_soal() {
+        return jumlah_soal;
+    }
+
+    public void setJumlah_soal(String jumlah_soal) {
+        this.jumlah_soal = jumlah_soal;
     }
 }
