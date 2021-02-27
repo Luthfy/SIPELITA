@@ -14,7 +14,7 @@ public class FormRequest {
     private Integer agency_province;
     private Integer agency_city;
     private Integer agency_district;
-    private Integer agency_village;
+    private String agency_village;
     private String work_of_unit;
     private String unit_of_work;
     private String work_category;
@@ -121,11 +121,11 @@ public class FormRequest {
         this.agency_district = agency_district;
     }
 
-    public Integer getAgency_village() {
+    public String getAgency_village() {
         return agency_village;
     }
 
-    public void setAgency_village(Integer agency_village) {
+    public void setAgency_village(String agency_village) {
         this.agency_village = agency_village;
     }
 

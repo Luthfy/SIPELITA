@@ -226,7 +226,7 @@ public class FormPelatihanActivity extends AppCompatActivity {
                             formRequest.setAgency_province(Integer.valueOf(spinnerProvValue));
                             formRequest.setAgency_city(Integer.valueOf(spinnerCityValue));
                             formRequest.setAgency_district(Integer.valueOf(spinnerDistrictValue));
-                            formRequest.setAgency_village(Integer.valueOf(spinnerVillageValue));
+                            formRequest.setAgency_village(spinnerVillageValue);
                             formRequest.setWork_of_unit(edtWorkUnit.getText().toString());
                             formRequest.setUnit_of_work(edtUnitWork.getText().toString());
                             formRequest.setWork_category(spinnerKelompokValue.toLowerCase());
