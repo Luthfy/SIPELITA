@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="id.digilabyte.sipelita">
+    package="id.saijaansmartdev.sipelita">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -31,30 +31,30 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:targetApi="q">
-        <activity android:name=".ui.GradeEventActivity" />
-        <activity android:name=".ui.ScanQRCodeActivity" />
-        <activity android:name=".ui.TestActivity" />
-        <activity android:name=".ui.ECardActivity" />
-        <activity android:name=".ui.SebaranActivity" />
-        <activity android:name=".ui.HistoryActivity" />
-        <activity android:name=".ui.HargaActivity" />
-        <activity android:name=".ui.CheckOutActivity" />
-        <activity android:name=".ui.FormPelatihanActivity" />
-        <activity android:name=".ui.ChangeProfileActivity" />
-        <activity android:name=".ui.BangunanActivity" />
-        <activity android:name=".ui.DetailActivity" />
-        <activity android:name=".ui.ContactActivity" />
-        <activity android:name=".ui.RuangActivity" />
-        <activity android:name=".ui.AulaActivity" />
-        <activity android:name=".ui.KelasActivity" />
-        <activity android:name=".ui.PelatihanActivity" />
-        <activity android:name=".ui.TransaksiActivity" />
-        <activity android:name=".ui.PemesananActivity" />
-        <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.RegisterActivity" />
-        <activity android:name=".ui.HomeActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.GradeEventActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.ScanQRCodeActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.TestActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.ECardActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.SebaranActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.HistoryActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.HargaActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.CheckOutActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.FormPelatihanActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.ChangeProfileActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.BangunanActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.DetailActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.ContactActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.RuangActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.AulaActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.KelasActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.PelatihanActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.TransaksiActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.PemesananActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.LoginActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.RegisterActivity" />
+        <activity android:name="id.saijaansmartdev.sipelita.ui.HomeActivity" />
         <activity
-            android:name=".ui.SplashScreenActivity"
+            android:name="id.saijaansmartdev.sipelita.ui.SplashScreenActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
