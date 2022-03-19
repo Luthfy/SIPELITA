@@ -123,6 +123,12 @@ public class DetailActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void setDataDetail(Pelatihan pelatihan) {
+        if (pelatihan == null) {
+            Toast.makeText(getApplicationContext(), "Anda Harus Login", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(DetailActivity.this, LoginActivity.class));
+            finish();
+        }
+
         assert pelatihan != null;
         txtTitle.setText(pelatihan.getTitle());
         txtDesc.setText("Deskripsi : \n"+ (pelatihan.getDesc() == null ? "" : pelatihan.getDesc()));
