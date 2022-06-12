@@ -105,7 +105,14 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<DetailPelatihan> call, Response<DetailPelatihan> response) {
                 mLoading.dismiss();
-                setDataDetail(response.body().getData());
+                if (response.body() == null) {
+                    Toast.makeText(getApplicationContext(), "Anda Harus Login", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DetailActivity.this, LoginActivity.class));
+                    finish();
+                } else {
+                    setDataDetail(response.body().getData());
+                }
+
             }
 
             @Override

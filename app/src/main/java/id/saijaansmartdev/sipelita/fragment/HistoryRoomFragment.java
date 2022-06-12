@@ -79,8 +79,8 @@ public class HistoryRoomFragment extends Fragment {
         historyTrainingResponseCall.enqueue(new Callback<HistoryRoomResponse>() {
             @Override
             public void onResponse(@NotNull Call<HistoryRoomResponse> call, @NotNull Response<HistoryRoomResponse> response) {
-                assert response.body() != null;
-                if (response.body().getData().getData() != null) {
+//                assert response.body() != null;
+                if (response.body() != null) {
                     historyRoom = response.body().getData();
                     historyRoomArrayList = response.body().getData().getData();
                     setRecyclerTrainingHistory(historyRoomArrayList);

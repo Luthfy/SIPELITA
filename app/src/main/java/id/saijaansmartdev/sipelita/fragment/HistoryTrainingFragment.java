@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -62,9 +63,13 @@ public class HistoryTrainingFragment extends Fragment {
         historyTrainingResponseCall.enqueue(new Callback<HistoryTrainingResponse>() {
             @Override
             public void onResponse(Call<HistoryTrainingResponse> call, Response<HistoryTrainingResponse> response) {
-                historyData = response.body().getData();
-                historyTrainingArrayList = historyData.getData();
-                setRecyclerTrainingHistory(historyTrainingArrayList);
+                if (response.body() != null) {
+                    historyData = response.body().getData();
+                    historyTrainingArrayList = historyData.getData();
+                    setRecyclerTrainingHistory(historyTrainingArrayList);
+                } else {
+                    Toast.makeText(getContext(), "Anda Harus Login", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
